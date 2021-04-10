@@ -2,7 +2,7 @@ import images from "./gallery-items.js";
 
 const galleryListRef = document.querySelector('.gallery');
 const lightboxRef = document.querySelector('.js-lightbox');
-const galleryImg = document.querySelector('.lightbox__image');;
+const galleryImg = document.querySelector('.lightbox__image');
 const btnClose = document.querySelector('.lightbox__button');
 const lightboxOverlay = document.querySelector('.lightbox__overlay');
 
@@ -26,10 +26,10 @@ const createGalleryHtml = ({ preview, original, description }, index) => {
     </li>`;
   }
 // добавляем строку в DOM
-const createGalleryMurkup = images.map(createGalleryHtml).join('');
-// console.log(createGalleryMurkup);
+const createGalleryMarkUp = images.map(createGalleryHtml).join('');
+// console.log(createGalleryMarkUp);
 
-galleryListRef.insertAdjacentHTML('beforeend', createGalleryMurkup);
+galleryListRef.insertAdjacentHTML('beforeend', createGalleryMarkUp);
 
 // вешаем слушателя на ul
 galleryListRef.addEventListener('click', onGalleryItemClick);
@@ -46,8 +46,8 @@ function onGalleryItemClick(event) {
   openModal(); // при нажатии на элемент добавляем класс открытия модального окна
 
   const galleryImgFunc = (src, alt) => {
-    galleryImg.src = originalImageUrl; // подмена значений
-    galleryImg.alt = event.target.alt;
+    galleryImg.src = src;
+    galleryImg.alt = alt;
   };
   
   galleryImgFunc(originalImageUrl, event.target.alt);
