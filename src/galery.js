@@ -44,11 +44,19 @@ function onGalleryItemClick(event) {
   }
   
   openModal(); // при нажатии на элемент добавляем класс открытия модального окна
-  galleryImg.src = originalImageUrl; // подмена значений
-  galleryImg.alt = event.target.alt;
+
+  const galleryImgFunc = (src, alt) => {
+    galleryImg.src = originalImageUrl; // подмена значений
+    galleryImg.alt = event.target.alt;
+  };
+  
+  galleryImgFunc(originalImageUrl, event.target.alt);
+ 
   galleryImg.dataset.index = +event.target.dataset.index;
  
 }
+
+
 
 function openModal() {
   window.addEventListener('keydown', onPressEscape);
@@ -64,8 +72,10 @@ function closeModal() {
   window.removeEventListener('keydown', onPressRightArrow);
   window.removeEventListener('keydown', onPressLeftArrow);
   lightboxRef.classList.remove('is-open');
-  galleryImg.src = '';
-  galleryImg.alt = '';
+
+  galleryImgFunc('','')
+  // galleryImg.src = '';
+  // galleryImg.alt = '';
 }
 
 lightboxOverlay.addEventListener('click', onLightboxEvent)
